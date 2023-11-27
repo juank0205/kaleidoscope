@@ -1,0 +1,5 @@
+def main(mylist){
+	'()
+}
+
+main('(1))

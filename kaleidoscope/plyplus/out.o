@@ -1,0 +1,40 @@
+.data
+exit_msg: .asciiz "Program finished:\n"
+newline: .asciiz "\n"
+.text
+.globl main
+main:
+add $fp, $zero, $sp
+sw $ra, 0($sp)
+addiu $sp, $sp, -4
+lw $ra, 4($sp)
+addiu $sp, $sp, 12
+lw $fp, 0($sp)
+jr $ra
+main:
+sw $fp, 0($sp)
+addiu $sp, $sp, -4
+sw $a0, 0($sp)
+addiu $sp, $sp, -4
+jal main
+
+
+exit:
+sw $a0, 0($sp)
+addiu $sp, $sp, -4
+	# Print message
+	li  $v0, 4
+	la  $a0, exit_msg
+	syscall
+	# Restore the result of the program which is on the stack
+lw $a0, 4($sp)
+addiu $sp, $sp, 4
+	li  $v0, 1
+	syscall
+	# Print one last new line
+	li $v0, 4
+	la $a0, newline
+	syscall
+	# Exit the program
+	li $v0, 10
+	syscall
