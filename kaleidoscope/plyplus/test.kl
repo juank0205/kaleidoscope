@@ -2,4 +2,8 @@ def main(mylist){
 	'()
 }
 
-main('(1))
+def function(list){
+	null
+}
+
+main(function('(2 4 6 8 function(null))))

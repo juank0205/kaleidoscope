@@ -36,13 +36,9 @@ variable:
 	ID;
 
 list:
-    '\'' LPAR list_content RPAR;
+    '\'' LPAR (expression (' ' expression)*)* RPAR
+    | NULL;
 
-list_content:
-    expression (' ' expression)*
-    | /* empty */;
-
-      
 
 logicalexpression:
 	expression (LT | GT | LEQ | GEQ | EQ | NEQ) expression

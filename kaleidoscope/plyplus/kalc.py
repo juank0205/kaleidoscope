@@ -11,12 +11,11 @@ if __name__ == '__main__':
         targetFile = sys.argv[2]
         with open('Kaleidoscope.g', 'r') as grm:
             with open(sourceFile, 'r') as sc:
-                with open(targetFile, 'w') as oc:
-                    scode = sc.read()
-                    ast = Grammar(grm, auto_filter_tokens=False).parse(scode)
-                    ast.to_png_with_pydot('ast.png')
+                scode = sc.read()
+                ast = Grammar(grm, auto_filter_tokens=False).parse(scode)
+                ast.to_png_with_pydot(targetFile)
                     #TDVisitor(ast)
-                    ce = MIPSCodeEmitter(oc)
-                    cg = CodeGenerator(ce, True)
-                    cg.visit(ast)
+                    # ce = MIPSCodeEmitter(oc)
+                    # cg = CodeGenerator(ce, True)
+                    # cg.visit(ast)
                     # print(ast)
