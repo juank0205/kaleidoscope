@@ -36,8 +36,12 @@ variable:
 	ID;
 
 list:
-    '\''LPAR (expression (' ' expression)* )* RPAR
-    | '\''LPAR RPAR;
+    '\'' LPAR list_content RPAR;
+
+list_content:
+    expression (' ' expression)*
+    | /* empty */;
+
       
 
 logicalexpression:
