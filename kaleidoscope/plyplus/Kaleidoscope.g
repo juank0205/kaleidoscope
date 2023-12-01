@@ -3,7 +3,7 @@ start: program;
 program  : functiondef* expression;
 
 functiondef:  DEF ID LPAR (ID (',' ID)*)*  RPAR LCBR expression RCBR;
-
+function_ref: ID;
 
 @expression:
 	  parexpression
@@ -13,6 +13,7 @@ functiondef:  DEF ID LPAR (ID (',' ID)*)*  RPAR LCBR expression RCBR;
 	| addexpr
 	| number 
 	| variable
+	| function_ref
 	| list
 	;
 
@@ -35,7 +36,9 @@ variable:
 	ID;
 
 list:
-	'\''LPAR (expression (' ' expression)* )* RPAR;
+    '\''LPAR (expression (' ' expression)* )* RPAR
+    | '\''LPAR RPAR;
+      
 
 logicalexpression:
 	expression (LT | GT | LEQ | GEQ | EQ | NEQ) expression
